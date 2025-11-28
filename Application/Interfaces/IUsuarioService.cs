@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.DTOs;
 
+namespace Application.Interfaces;
 
-public interface IusuarioService
+public interface IUsuarioService
 {
 Task<IEnumerable<UsuarioReadDto>> ListarAsync(CancellationToken  ct);
 

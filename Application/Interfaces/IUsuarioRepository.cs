@@ -1,6 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
+
+namespace Application.Interfaces;
+
+
 public interface IUsuarioRepository
 {
 Task<IEnumerable<Usuario>> GetAllAsync(CancellationToken  ct);
