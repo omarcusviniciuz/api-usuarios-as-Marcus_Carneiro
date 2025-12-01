@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "n5C2e1hyalg=",
+  "dgSpecHash": "Ose/b42mk0Q=",
   "success": true,
-  "projectFilePath": "C:\\Users\\luize\\APIUsuarios\\APIUsuarios.csproj",
+  "projectFilePath": "C:\\Users\\luize\\Desktop\\TDE - Página com Tailwind CSS\\api-usuarios-as-Marcus_Carneiro\\APIUsuarios.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\luize\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\luize\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",

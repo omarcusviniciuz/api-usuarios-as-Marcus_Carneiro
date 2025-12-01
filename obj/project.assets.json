@@ -318,11 +318,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\luize\\APIUsuarios\\APIUsuarios.csproj",
+      "projectUniqueName": "C:\\Users\\luize\\Desktop\\TDE - Página com Tailwind CSS\\api-usuarios-as-Marcus_Carneiro\\APIUsuarios.csproj",
       "projectName": "APIUsuarios",
-      "projectPath": "C:\\Users\\luize\\APIUsuarios\\APIUsuarios.csproj",
+      "projectPath": "C:\\Users\\luize\\Desktop\\TDE - Página com Tailwind CSS\\api-usuarios-as-Marcus_Carneiro\\APIUsuarios.csproj",
       "packagesPath": "C:\\Users\\luize\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\luize\\APIUsuarios\\obj\\",
+      "outputPath": "C:\\Users\\luize\\Desktop\\TDE - Página com Tailwind CSS\\api-usuarios-as-Marcus_Carneiro\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\luize\\AppData\\Roaming\\NuGet\\NuGet.Config"
