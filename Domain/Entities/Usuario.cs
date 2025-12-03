@@ -5,22 +5,25 @@ public  class  Usuario
 
 {
 
-public  int Id { get; set; } // PK, Auto-increment
+public  int Id { get; set; }
 
-public  string Nome { get; set; } required// Obrigatório, 3-100 caracteres
 
-public  string Email { get; set; } required// Obrigatório, formato válido, único
+public  string Nome { get; set; } = string.Empty;
 
-public  string Senha { get; set; } required// Obrigatório, min 6 caracteres
 
-public  DateTime DataNascimento { get; set; } required// Obrigatório, idade >= 18 anos
+public  string Email { get; set; } = string.Empty;
 
-public  string Telefone { get; set; } // Opcional, formato (XX) XXXXX-XXXX
+public  string Senha { get; set; } = string.Empty;
 
-public  bool Ativo { get; set; } // required Obrigatório, default true
 
-public  DateTime DataCriacao { get; set; } // required Obrigatório, preenchido automaticamente
+public  DateTime DataNascimento { get; set; }  
 
-public  DateTime? DataAtualizacao { get; set; } // Opcional, atualizado automaticamente
+public  string Telefone { get; set; } 
+
+public  bool Ativo { get; set; } = true;
+
+public  DateTime DataCriacao { get; set; } 
+
+public  DateTime? DataAtualizacao { get; set; } 
 
 }

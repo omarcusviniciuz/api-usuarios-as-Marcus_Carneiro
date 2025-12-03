@@ -18,4 +18,5 @@ Task<UsuarioReadDto> AtualizarAsync(int  id, UsuarioUpdateDto  dto, Cancellation
 Task<bool> RemoverAsync(int  id, CancellationToken  ct);
 
 Task<bool> EmailJaCadastradoAsync(string  email, CancellationToken  ct);
+    Task<object?> AtualizarParcialAsync(int id, Usuario usuario, CancellationToken ct);
 }

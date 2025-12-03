@@ -2,7 +2,7 @@ namespace Application.Services;
 
 public static class UsuarioFactory
 {
-    public static Usuario Criar(string nome, string email, string Telefone, DateTime dataNascimento)
+    public static Usuario Criar(string nome, string email, string telefone, DateTime dataNascimento)
     {
           if (string.IsNullOrWhiteSpace(nome))
         {
@@ -14,9 +14,9 @@ public static class UsuarioFactory
                throw new ArgumentException("O Email é inválido...", nameof(email));
         }
 
-        if (Telefone.Length < 9)
+        if (telefone.Length < 9)
         {
-             throw new ArgumentException("O Telefone é inválido...", nameof(Telefone));
+             throw new ArgumentException("O Telefone é inválido...", nameof(telefone));
         }
             if (dataNascimento > DateTime.Now.AddYears(-18))
         {
@@ -25,12 +25,12 @@ public static class UsuarioFactory
 
         Console.WriteLine("Usuario validado com sucesso! Criando...");
         
-        Usuario UsuarioValido = new Usuario();
-        UsuarioValido.Nome = nome;
-        UsuarioValido.Telefone = Telefone;
-        UsuarioValido.Email = email;
-        UsuarioValido.DataNascimento = DateTime.Now;
-        UsuarioValido.DataCriacao = DateTime.Now;
-        return UsuarioValido;
+        Usuario usuarioValido = new Usuario();
+        usuarioValido.Nome = nome;
+        usuarioValido.Telefone = telefone;
+        usuarioValido.Email = email;
+        usuarioValido.DataNascimento = dataNascimento;
+        usuarioValido.DataCriacao = DateTime.Now;
+        return usuarioValido;
     }
 }
