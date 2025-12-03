@@ -37,8 +37,14 @@ public async Task<IEnumerable<UsuarioReadDto>> ListarAsync(CancellationToken ct)
     return MappingExtensions.ToReadDto(usuario);
 }
 
+  private async Task<bool> EmailJaCadastradoAsync(string email, CancellationToken ct)
+{
+   
+    return await _repo.EmailExistsAsync(email, ct);
+}
 
-   public async Task<UsuarioReadDto> AtualizarAsync(int id, UsuarioUpdateDto dto, CancellationToken ct)
+
+    public async Task<UsuarioReadDto> AtualizarAsync(int id, UsuarioUpdateDto dto, CancellationToken ct)
 {
     var usuario = await _repo.GetByIdAsync(id, ct);
     if (usuario == null)
@@ -77,25 +83,6 @@ public async Task<IEnumerable<UsuarioReadDto>> ListarAsync(CancellationToken ct)
 }
 
 
-    public async Task<bool> EmailJaCadastradoAsync(string email, CancellationToken ct)
-    {
-        return await _repo.EmailExistsAsync(email, ct);
-    }
-
-    public Task<object?> CriarAsync(string nome, string email, string telefone, DateTime dataNascimento, CancellationToken ct)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<object?> AtualizarAsync(int id, Usuario usuario, CancellationToken ct)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<object?> AtualizarParcialAsync(int id, Usuario usuario, CancellationToken ct)
-    {
-        throw new NotImplementedException();
-    }
 
 public async Task<UsuarioReadDto?> ObterAsync(int id, CancellationToken ct)
 {
@@ -107,4 +94,14 @@ public async Task<UsuarioReadDto?> ObterAsync(int id, CancellationToken ct)
 
     return MappingExtensions.ToReadDto(usuario);
 }
+
+    Task<bool> IUsuarioService.EmailJaCadastradoAsync(string email, CancellationToken ct)
+    {
+        return EmailJaCadastradoAsync(email, ct);
+    }
+
+    public Task<object?> AtualizarParcialAsync(int id, Usuario usuario, CancellationToken ct)
+    {
+        throw new NotImplementedException();
+    }
 }

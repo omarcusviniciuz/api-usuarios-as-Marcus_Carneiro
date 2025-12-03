@@ -4,18 +4,19 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 public  class  Usuario
 
 {
-
+ [Key]
 public  int Id { get; set; }
 
-
+[Required]
 public  string Nome { get; set; } = string.Empty;
 
-
+[Required]
 public  string Email { get; set; } = string.Empty;
 
+[Required]
 public  string Senha { get; set; } = string.Empty;
 
-
+[Required]
 public  DateTime DataNascimento { get; set; }  
 
 public  string Telefone { get; set; } 
