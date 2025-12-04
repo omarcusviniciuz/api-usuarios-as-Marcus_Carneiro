@@ -1,5 +1,7 @@
 LINK DO POSTMAN: https://omarcusviniciuz-8416547.postman.co/workspace/Marcus-Vinicius-Carneiro-da-Sil~2a378342-a686-40ec-83f6-736d3a98eaab/collection/49448334-f8632a13-1f54-46ae-a2d6-215854ae18e2?action=share&creator=49448334
 
+LINK DO VIDEO: https://youtu.be/lHfasFqvQx0
+
 Minha experiência criando este projeto foi muito produtiva e focada.
 Embora eu já tivesse a base pronta, meu trabalho principal foi seguir um padrão consistente e organizar o projeto
 de forma clara e eficiente.
