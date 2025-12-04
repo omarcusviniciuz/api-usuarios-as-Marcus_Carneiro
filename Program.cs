@@ -1,5 +1,3 @@
-using System.Reflection.Metadata;
-using System.Runtime.Intrinsics.Arm;
 using Application.DTOs;
 using Application.Interfaces;
 using Application.Services;
@@ -10,78 +8,72 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddOpenApi();
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=app.db"));
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite("Data Source=app.db"));
 
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
-
 
 builder.Services.AddValidatorsFromAssemblyContaining<UsuarioCreateDtoValidator>();
 
-
 var app = builder.Build();
 
-//Listar Usuarios
+
+// LISTAR
 app.MapGet("/Usuarios", async (IUsuarioService service, CancellationToken ct) =>
 {
-    var Usuarios = await service.ListarAsync(ct);
-    return Results.Ok(Usuarios);
+    var usuarios = await service.ListarAsync(ct);
+    return Results.Ok(usuarios);
 });
-// Buscar por ID
+
+// BUSCAR POR ID
 app.MapGet("/Usuarios/{id}", async (int id, IUsuarioService service, CancellationToken ct) =>
 {
-    var Usuario = await service.ObterAsync(id, ct);
-    return Usuario != null ? Results.Ok(Usuario) : Results.NotFound();
+    var usuario = await service.ObterAsync(id, ct);
+    return usuario is not null ? Results.Ok(usuario) : Results.NotFound();
 });
-//Criando Usuario
+
+// CRIAR
 app.MapPost("/Usuarios", async (
     UsuarioCreateDto dto,
     IUsuarioService service,
     CancellationToken ct,
     IValidator<UsuarioCreateDto> validator) =>
 {
-   
-    var ResultValidation = await validator.ValidateAsync(dto, ct);
+    var validation = await validator.ValidateAsync(dto, ct);
+    if (!validation.IsValid)
+        return Results.ValidationProblem(validation.ToDictionary());
 
-    if (!ResultValidation.IsValid)
-    {
-        return Results.ValidationProblem(ResultValidation.ToDictionary());
-    }
-    
-    var Usuario = await service.CriarAsync(dto, ct);
-    return Results.Created($"/Usuarios/{Usuario.Id}", Usuario);
+    var usuario = await service.CriarAsync(dto, ct);
+    return Results.Created($"/Usuarios/{usuario.Id}", usuario);
 });
 
-// Atualização do Usuario
-app.MapPut("/Usuarios/{id}", async (int id, UsuarioUpdateDto dto, IUsuarioService service, CancellationToken ct, IValidator<UsuarioUpdateDto> validator) =>
+// ATUALIZAR
+app.MapPut("/Usuarios/{id}", async (
+    int id,
+    UsuarioUpdateDto dto,
+    IUsuarioService service,
+    CancellationToken ct,
+    IValidator<UsuarioUpdateDto> validator) =>
 {
-    var validationResult = await validator.ValidateAsync(dto, ct);
-    if (!validationResult.IsValid) return Results.ValidationProblem(validationResult.ToDictionary());
-    var UsuarioAtualizado = await service.AtualizarAsync(id, dto, ct);
-    return Results.Ok(UsuarioAtualizado);
+    var validation = await validator.ValidateAsync(dto, ct);
+    if (!validation.IsValid)
+        return Results.ValidationProblem(validation.ToDictionary());
 
+    var atualizado = await service.AtualizarAsync(id, dto, ct);
+    return Results.Ok(atualizado);
 });
 
-// Deletar Usuario
+// REMOVER
 app.MapDelete("/Usuarios/{id}", async (int id, IUsuarioService service, CancellationToken ct) =>
 {
     var removido = await service.RemoverAsync(id, ct);
-    if (!removido)
-        return Results.NotFound();
-
-    return Results.NoContent();
+    return removido ? Results.NoContent() : Results.NotFound();
 });
 
 if (app.Environment.IsDevelopment())
-{
     app.MapOpenApi();
-}
-
 
 app.UseHttpsRedirection();
-
-
 app.Run();

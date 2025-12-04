@@ -13,14 +13,14 @@ public class UsuarioRepository : IUsuarioRepository
         _context = context;
     }
 
-public async Task<IEnumerable<Usuario>> GetAllAsync(CancellationToken ct = default)
-{
-    
-    return await _context.Usuarios
-        .AsNoTracking()
-        .Where(u => u.Ativo) 
-        .ToListAsync(ct);
-}
+    public async Task<IEnumerable<Usuario>> GetAllAsync(CancellationToken ct = default)
+    {
+        return await _context.Usuarios
+            .AsNoTracking()
+            .Where(u => u.Ativo)
+            .ToListAsync(ct);
+    }
+
     public async Task<Usuario?> GetByIdAsync(int id, CancellationToken ct = default)
     {
         return await _context.Usuarios.FindAsync(new object[] { id }, ct);
@@ -43,18 +43,14 @@ public async Task<IEnumerable<Usuario>> GetAllAsync(CancellationToken ct = defau
         return Task.CompletedTask;
     }
 
-    // ✔ IMPLEMENTADO
     public async Task<Usuario?> GetByEmailAsync(string email, CancellationToken ct)
     {
-        return await _context.Usuarios
-            .FirstOrDefaultAsync(u => u.Email == email, ct);
+        return await _context.Usuarios.FirstOrDefaultAsync(x => x.Email == email, ct);
     }
 
-    // ✔ IMPLEMENTADO — usado para checar duplicidade
     public async Task<bool> EmailExistsAsync(string email, CancellationToken ct)
     {
-        return await _context.Usuarios
-            .AnyAsync(u => u.Email == email, ct);
+        return await _context.Usuarios.AnyAsync(u => u.Email == email, ct);
     }
 
     public async Task<int> SaveChangesAsync(CancellationToken ct)
